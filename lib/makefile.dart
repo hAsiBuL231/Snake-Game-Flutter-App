@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class GamePage extends StatefulWidget {
@@ -8,23 +10,41 @@ class GamePage extends StatefulWidget {
 }
 
 class GamePageState extends State<GamePage> {
+  startGame() {
+    Timer.periodic(const Duration(milliseconds: 300), (timer) {
+      updateSnake();
+    });
+  }
+
+  updateSnake() {
+    /*@override
+    void setState(VoidCallback fn) {
+      // TODO: implement setState
+
+      super.setState(fn);
+    }*/
+  }
+
   @override
   Widget build(BuildContext context) {
-    double profileH = MediaQuery.of(context).size.height;
-    double profileW = MediaQuery.of(context).size.width;
-    double h= profileH/3;
+    int profileH = MediaQuery.of(context).size.height.toInt();
+    int profileW = MediaQuery.of(context).size.width.toInt();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
+            //Text(profileH.toString()),
+            //Text(profileW.toString()),
             Container(
-                height: profileH - h,
-                width: profileW - 10,
+                height: profileH - (profileH / 3),
+                //width: profileW - 10,
+                width: profileH / 2,
                 color: Colors.black,
                 child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.all(10),
-                    itemCount: 900,
+                    itemCount: 25 * 38,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 25,
@@ -38,7 +58,7 @@ class GamePageState extends State<GamePage> {
                     })),
             Container(
                 padding: const EdgeInsets.all(7),
-                height: h-50,
+                height: (profileH / 3) - 40,
                 width: profileW - 20,
                 color: Colors.amber,
                 child: Table(
