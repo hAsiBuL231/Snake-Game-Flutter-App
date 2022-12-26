@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_project/makefile.dart';
+import 'package:game_project/drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,44 +13,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        ///   Drawer    ///
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              color: Colors.cyan,
-              height: 100,
-              child: const Text(
-                "Welcome to Drawer",
-              ),
-            ),
-            const ListTile(
-                leading: Icon(Icons.info_outline),
-                title: TextButton(
-                    onPressed: null, child: Text("Info"))), // Drawer : Info
-            const ListTile(
-                leading: Icon(Icons.help_outline),
-                title: TextButton(
-                    onPressed: null,
-                    child: Text("Help & Support"))), // Drawer : help & support
-            const ListTile(
-                leading: Icon(Icons.feedback_outlined),
-                title: TextButton(
-                    onPressed: null,
-                    child: Text("Feedback"))), // Drawer : feedback
-            const ListTile(
-                leading: Icon(Icons.settings),
-                title: TextButton(
-                    onPressed: null,
-                    child: Text("Settings"))), // Drawer : settings
-            const ListTile(
-                leading: Icon(Icons.exit_to_app),
-                title: TextButton(
-                    onPressed: null, child: Text("Exit"))) // Drawer : exit
-          ],
-        ),
-      ),
+      drawer: const Func(),
       appBar: AppBar(
         /// Appbar ///
         title: const Text("Flutter Demo Snake Game"),
@@ -59,14 +23,20 @@ class HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.horizontal(
               left: Radius.circular(25), right: Radius.circular(25)),
         ),
-///
-         leading:
-         IconButton(
-           icon: const Icon(Icons.menu),
-           onPressed: () {
 
-           },
-         ),
+        ///
+        leading: IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const Func();
+                  },
+                ),
+              );
+            }),
         actions: <Widget>[
           IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           PopupMenuButton(itemBuilder: (BuildContext context) {
