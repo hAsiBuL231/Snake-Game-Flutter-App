@@ -12,23 +12,24 @@ class GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     double profileH = MediaQuery.of(context).size.height;
     double profileW = MediaQuery.of(context).size.width;
+    double h= profileH/3;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             Container(
-                height: profileH - 200,
-                width: profileW - 20,
+                height: profileH - h,
+                width: profileW - 10,
                 color: Colors.black,
                 child: GridView.builder(
                     padding: const EdgeInsets.all(10),
-                    itemCount: 2475,
+                    itemCount: 900,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 45,
-                      mainAxisSpacing: 1,
-                      crossAxisSpacing: 1,
+                      crossAxisCount: 25,
+                      mainAxisSpacing: 2,
+                      crossAxisSpacing: 2,
                     ),
                     itemBuilder: (contex, index) {
                       return Container(
@@ -37,7 +38,7 @@ class GamePageState extends State<GamePage> {
                     })),
             Container(
                 padding: const EdgeInsets.all(7),
-                height: 160,
+                height: h-50,
                 width: profileW - 20,
                 color: Colors.amber,
                 child: Table(
@@ -47,7 +48,7 @@ class GamePageState extends State<GamePage> {
                         height: 52,
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 60,
                         child: ElevatedButton.icon(
                             onPressed: () {},
                             icon: const Icon(Icons.arrow_upward_outlined),
@@ -57,7 +58,7 @@ class GamePageState extends State<GamePage> {
                     ]),
                     TableRow(children: [
                       SizedBox(
-                        height: 50,
+                        height: 60,
                         child: ElevatedButton.icon(
                             onPressed: () {},
                             icon: const Icon(Icons.arrow_back),
@@ -67,7 +68,7 @@ class GamePageState extends State<GamePage> {
                         height: 52,
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 60,
                         child: ElevatedButton.icon(
                             onPressed: () {},
                             icon: const Icon(Icons.arrow_forward),
@@ -77,7 +78,7 @@ class GamePageState extends State<GamePage> {
                     TableRow(children: [
                       Container(),
                       SizedBox(
-                        height: 50,
+                        height: 60,
                         child: ElevatedButton.icon(
                             onPressed: () {},
                             icon: const Icon(Icons.arrow_downward),
