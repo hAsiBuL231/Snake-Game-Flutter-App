@@ -4,10 +4,10 @@ class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
 
   @override
-  _GamePageState createState() => _GamePageState();
+  GamePageState createState() => GamePageState();
 }
 
-class _GamePageState extends State<GamePage> {
+class GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     double profileH = MediaQuery.of(context).size.height;
