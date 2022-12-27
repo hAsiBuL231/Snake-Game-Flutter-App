@@ -15,11 +15,17 @@ class _FuncState extends State<Func> {
       child: Column(
         children: [
           Container(
+            padding: const EdgeInsets.only(top: 20),
             alignment: Alignment.center,
-            color: Colors.cyan,
+            color: Colors.lightBlue,
             height: 100,
             child: const Text(
               "Welcome to Drawer",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ),
           const ListTile(
@@ -34,11 +40,13 @@ class _FuncState extends State<Func> {
           const ListTile(
               leading: Icon(Icons.feedback_outlined),
               title: TextButton(
-                  onPressed: null, child: Text("Feedback"))), // Drawer : feedback
+                  onPressed: null,
+                  child: Text("Feedback"))), // Drawer : feedback
           const ListTile(
               leading: Icon(Icons.settings),
               title: TextButton(
-                  onPressed: null, child: Text("Settings"))), // Drawer : settings
+                  onPressed: null,
+                  child: Text("Settings"))), // Drawer : settings
           const ListTile(
               leading: Icon(Icons.exit_to_app),
               title: TextButton(
