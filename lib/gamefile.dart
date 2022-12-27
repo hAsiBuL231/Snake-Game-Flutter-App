@@ -10,22 +10,29 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  int row = 25;
+  int column = 35;
+
   int _k = 1;
+  int t = 1;
 
   startGame() {
-    Future.delayed(
-      const Duration(milliseconds: 300),
-    );
-    updateSnake(1);
+    Timer.periodic(const Duration(milliseconds: 200), (timer) {
+      setState(() {
+        _k += t;
+        if (_k > 950) _k = 0;
+        if (_k < 0) _k = 950;
+      });
+    });
   }
 
-  updateSnake(int t) {
+  /*updateSnake() {
     setState(() {
       _k += t;
       if (_k > 950) _k = 0;
       if (_k < 0) _k = 950;
     });
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +53,7 @@ class _GamePageState extends State<GamePage> {
                 child: GridView.builder(
                     //physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.all(10),
-                    itemCount: 25 * 38,
+                    itemCount: row * column,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 25,
@@ -77,7 +84,9 @@ class _GamePageState extends State<GamePage> {
                         height: 60,
                         child: ElevatedButton.icon(
                             onPressed: () {
-                              updateSnake(-25);
+                              t = -25;
+                              startGame();
+                              //updateSnake();
                             },
                             icon: const Icon(Icons.arrow_upward_outlined),
                             label: const Text("Up")),
@@ -89,7 +98,8 @@ class _GamePageState extends State<GamePage> {
                         height: 60,
                         child: ElevatedButton.icon(
                             onPressed: () {
-                              updateSnake(-1);
+                              t = -1;
+                              //updateSnake();
                             },
                             icon: const Icon(Icons.arrow_back),
                             label: const Text("Left")),
@@ -101,7 +111,8 @@ class _GamePageState extends State<GamePage> {
                         height: 60,
                         child: ElevatedButton.icon(
                             onPressed: () {
-                              updateSnake(1);
+                              t = 1;
+                              //updateSnake();
                             },
                             icon: const Icon(Icons.arrow_forward),
                             label: const Text("Right")),
@@ -113,7 +124,8 @@ class _GamePageState extends State<GamePage> {
                         height: 60,
                         child: ElevatedButton.icon(
                             onPressed: () {
-                              updateSnake(25);
+                              t = 25;
+                              //updateSnake();
                             },
                             icon: const Icon(Icons.arrow_downward),
                             label: const Text("Down")),
