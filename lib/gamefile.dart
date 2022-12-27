@@ -3,26 +3,28 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class GamePage extends StatefulWidget {
-  const GamePage({Key? key}) : super(key: key);
+  const GamePage({super.key});
 
   @override
-  GamePageState createState() => GamePageState();
+  State<GamePage> createState() => _GamePageState();
 }
 
-class GamePageState extends State<GamePage> {
+class _GamePageState extends State<GamePage> {
+  int _k = 1;
+
   startGame() {
-    Timer.periodic(const Duration(milliseconds: 300), (timer) {
-      updateSnake();
-    });
+    Future.delayed(
+      const Duration(milliseconds: 300),
+    );
+    updateSnake(1);
   }
 
-  updateSnake() {
-    /*@override
-    void setState(VoidCallback fn) {
-      // TODO: implement setState
-
-      super.setState(fn);
-    }*/
+  updateSnake(int t) {
+    setState(() {
+      _k += t;
+      if (_k > 950) _k = 0;
+      if (_k < 0) _k = 950;
+    });
   }
 
   @override
@@ -42,7 +44,7 @@ class GamePageState extends State<GamePage> {
                 width: profileH / 2,
                 color: Colors.black,
                 child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
+                    //physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.all(10),
                     itemCount: 25 * 38,
                     gridDelegate:
@@ -52,9 +54,13 @@ class GamePageState extends State<GamePage> {
                       crossAxisSpacing: 2,
                     ),
                     itemBuilder: (contex, index) {
-                      return Container(
-                        color: Colors.white,
-                      );
+                      if (index == _k) {
+                        return Container(color: Colors.black);
+                      } else {
+                        return Container(
+                          color: Colors.white,
+                        );
+                      }
                     })),
             Container(
                 padding: const EdgeInsets.all(7),
@@ -70,7 +76,9 @@ class GamePageState extends State<GamePage> {
                       SizedBox(
                         height: 60,
                         child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              updateSnake(-25);
+                            },
                             icon: const Icon(Icons.arrow_upward_outlined),
                             label: const Text("Up")),
                       ),
@@ -80,7 +88,9 @@ class GamePageState extends State<GamePage> {
                       SizedBox(
                         height: 60,
                         child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              updateSnake(-1);
+                            },
                             icon: const Icon(Icons.arrow_back),
                             label: const Text("Left")),
                       ),
@@ -90,7 +100,9 @@ class GamePageState extends State<GamePage> {
                       SizedBox(
                         height: 60,
                         child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              updateSnake(1);
+                            },
                             icon: const Icon(Icons.arrow_forward),
                             label: const Text("Right")),
                       )
@@ -100,7 +112,9 @@ class GamePageState extends State<GamePage> {
                       SizedBox(
                         height: 60,
                         child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {
+                              updateSnake(25);
+                            },
                             icon: const Icon(Icons.arrow_downward),
                             label: const Text("Down")),
                       ),
